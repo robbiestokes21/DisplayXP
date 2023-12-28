@@ -1,0 +1,37 @@
+plugins{
+    id 'java'
+}
+
+repositories{
+    mavenLocal()
+    maven{
+        url = 'https://repo.runelite.net'
+    }
+    mavenCentral()
+}
+
+def runeLiteVersion = 'latest.release'
+
+dependencies {
+    compileOnly group: 'net.runelite', name: 'client', version: runeLiteVersion
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    implementation group: 'org.json', name: 'json', version: '20231013'
+
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation group: 'net.runelite', name: 'client', version: runeLiteVersion
+    testImplementation group: 'net.runelite', name: 'jshell', version: runeLiteVersion
+
+}
+
+group = 'com.DisplayXP'
+version = '1.0.0'
+java{
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
